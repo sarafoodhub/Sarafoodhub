@@ -220,7 +220,7 @@ Dhule, Maharashtra
 
 <div class="box-text">
 Monday - Sunday<br>
-<span>⏰ 4:00 PM - 2:00 AM</span>
+<span id="timing"> 4:00 PM - 2:00 AM(OPEN)</span>
 </div>
 
 <div class="open-tag">
@@ -279,13 +279,15 @@ let status = document.getElementById("status");
 
 if(current >= openTime || current < closeTime){
 
-status.innerHTML="🟢 OPEN NOW";
-status.classList.remove("closed");
+    status.innerHTML = "🟢 OPEN NOW";
+    document.getElementById("timing").innerHTML = "4:00 PM – 2:00 AM (OPEN)";
+    status.classList.remove("closed");
 
 }else{
 
-status.innerHTML="🔴 CLOSED";
-status.classList.add("closed");
+    status.innerHTML = "🔴 CLOSED";
+    document.getElementById("timing").innerHTML = "4:00 PM – 2:00 AM (CLOSED)";
+    status.classList.add("closed");
 
 }
 
