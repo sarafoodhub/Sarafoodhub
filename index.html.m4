@@ -264,7 +264,6 @@ Dhule, Maharashtra
 
 
 
-<div class="info-box">
 
 <div class="box-title">
 🕒 Opening Hours
@@ -525,8 +524,6 @@ document.getElementById("total").innerHTML=total;
 document.getElementById("order").value=orderText;
 
 }
-  </script>
-</body>
-</html>
+</script>
 </body>
 </html>
