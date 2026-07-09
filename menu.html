@@ -167,9 +167,16 @@ menu.forEach((item,index)=>{
 
 html+=`
 <div class="food-card">
-<div class="menu-name">${item.name}</div>
-<div class="menu-price">₹ ${item.price}</div>
 
+<div class="menu-name">${item.name}</div>
+
+${item.name=="Chicken Momos (Steam)" ||
+item.name=="Chicken Momos (Fried)" ||
+item.name=="Egg Chicken Roll"
+? '<div style="color:gold;font-size:13px;">⭐ Best Seller</div>'
+: ""}
+
+<div class="menu-price">₹${item.price}</div>
 <button class="add-btn" onclick="addCart(${index})">
 Add To Cart
 </button>
