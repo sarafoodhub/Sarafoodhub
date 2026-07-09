@@ -51,7 +51,9 @@ border-radius:10px;
 font-weight:bold;
 margin-bottom:18px;
 }
-
+.closed{
+background:#b30000;
+}
 
 .btn{
 display:block;
@@ -233,6 +235,36 @@ document.getElementById("offerText").innerHTML = offers[day];
 document.getElementById("offerBox").style.display="block";
 
 }
+  function checkStatus(){
+
+let now = new Date();
+let hour = now.getHours();
+let minute = now.getMinutes();
+
+let current = hour * 60 + minute;
+
+let openTime = 16 * 60; // 4:00 PM
+let closeTime = 2 * 60; // 2:00 AM
+
+let status = document.getElementById("status");
+
+if(current >= openTime || current < closeTime){
+
+status.innerHTML="🟢 OPEN NOW";
+status.classList.remove("closed");
+
+}else{
+
+status.innerHTML="🔴 CLOSED";
+status.classList.add("closed");
+
+}
+
+}
+
+checkStatus();
+
+setInterval(checkStatus,60000);
 
 </script>
 <script>
