@@ -108,7 +108,7 @@ padding:8px 18px;
 border-radius:20px;
 font-weight:bold;
 }
-.menu-card{
+.food-card{
 background:#2b2b2b;
 border:1px solid #d4af37;
 padding:12px;
@@ -413,7 +413,7 @@ menu.forEach((item,index)=>{
 
 html+=`
 
-<div class="menu-card">
+<div class="food-card">
 
 <div class="menu-name">${item.name}</div>
 
@@ -535,11 +535,12 @@ document.getElementById("cartItems").innerHTML=output;
 document.getElementById("total").innerHTML=total;
 
 document.getElementById("order").value=orderText;
+}
 function searchMenu(){
 
 let input=document.getElementById("searchMenu").value.toLowerCase();
 
-let cards=document.getElementsByClassName("menu-card");
+let cards=document.getElementsByClassName("food-card");
 
 for(let i=0;i<cards.length;i++){
 
