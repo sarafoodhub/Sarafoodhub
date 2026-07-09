@@ -148,7 +148,19 @@ Delicious Rolls, Momos, Rice & More
 <a class="btn" href="https://wa.me/918669092091">
 💬 WhatsApp Order
 </a>
+<button class="btn" onclick="showOffer()">
+🎁 Today's Special Offer
+</button>
 
+<div class="info-box" id="offerBox" style="display:none;">
+
+<div class="box-title">
+🔥 Today's Offer
+</div>
+
+<div class="box-text" id="offerText"></div>
+
+</div>
 
 
 <div class="info-box">
@@ -188,6 +200,41 @@ Monday - Sunday<br>
 
 
 </div>
+</div>
 
+<script>
+
+function showOffer(){
+
+let day = new Date().getDay();
+
+let offers = {
+
+1:"Monday 🎉<br>Buy any 3 items and get <b>FREE Veg Momos</b>",
+
+2:"Tuesday 🎉<br>Buy any 2 items and get <b>FREE Egg Roll</b>",
+
+3:"Wednesday 🎉<br>Buy any 3 items and get <b>FREE Egg Fried Rice</b>",
+
+4:"Thursday 🎉<br>Buy any 2 items and get <b>FREE Egg Roll</b>",
+
+5:"Friday 🎉<br>Buy any 2 Rolls and get <b>FREE Regular Fries</b>",
+
+6:"Saturday 🎉<br>Buy any 3 items worth ₹300+ and get <b>FREE Chicken Roll</b>",
+
+0:"Sunday 🎉<br>Buy any 3 items worth ₹300+ and get <b>FREE Chicken Fried Rice</b>"
+
+};
+
+document.getElementById("offerText").innerHTML = offers[day];
+
+document.getElementById("offerBox").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
 </body>
 </html>
