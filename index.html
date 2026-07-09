@@ -108,46 +108,7 @@ padding:8px 18px;
 border-radius:20px;
 font-weight:bold;
 }
-.food-card{
-background:#2b2b2b;
-border:1px solid #d4af37;
-padding:12px;
-border-radius:12px;
-margin:12px 0;
-}
 
-.menu-name{
-font-size:18px;
-font-weight:bold;
-color:#fff;
-}
-
-.menu-price{
-color:#d4af37;
-margin-top:5px;
-}
-
-.add-btn{
-
-background:#d4af37;
-
-color:#111;
-
-padding:8px 14px;
-
-border:none;
-
-border-radius:8px;
-
-margin-top:10px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-width:100%;
-
-}
 
 </style>
 
@@ -213,25 +174,7 @@ Delicious Rolls, Momos, Rice & More
 <div class="box-text" id="offerText"></div>
 
 </div>
-<div class="info-box">
 
-<div class="box-title">
-🛒 Place Your Order
-</div>
-
-<input type="text" id="name" placeholder="Your Name" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
-
-<input type="text" id="phone" placeholder="Mobile Number" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
-
-<textarea id="order" placeholder="Write Your Order Here..." style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;height:100px;"></textarea>
-
-<input type="text" id="address" placeholder="Delivery Address" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
-
-<button class="btn" onclick="sendOrder()">
-🛒 Place Order
-</button>
-
-</div>
 
 
 <div class="box-title">
@@ -302,23 +245,7 @@ document.getElementById("offerBox").style.display="block";
 
 </script>
 <script>
-function sendOrder(){
 
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let order=document.getElementById("order").value;
-let address=document.getElementById("address").value;
-
-let msg =
-"🍽️ *New Order - Sara's Food Hub*%0A%0A"+
-"👤 Name: "+name+"%0A"+
-"📞 Mobile: "+phone+"%0A"+
-"🍔 Order: "+order+"%0A"+
-"📍 Address: "+address;
-
-window.open("https://wa.me/918669092091?text="+msg,"_blank");
-
-}
 </script>
   <script>
 
