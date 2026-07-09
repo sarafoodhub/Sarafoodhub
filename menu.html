@@ -94,7 +94,16 @@ font-size:16px;
 #cartItems{
 margin-top:15px;
 }
-
+.ribbon{
+background:#ff3d00;
+color:#fff;
+padding:3px 8px;
+border-radius:6px;
+font-size:11px;
+font-weight:bold;
+display:inline-block;
+margin-bottom:6px;
+}
 </style>
 </head>
 
@@ -169,11 +178,19 @@ html+=`
 <div class="food-card">
 
 <div class="menu-name">${item.name}</div>
+${item.name=="Chicken Momos (Steam)" ||
+item.name=="Chicken Momos (Fried)" ||
+item.name=="Chicken Egg Roll"
+? '<div class="ribbon">🔥 HOT</div>'
+: ""}
 
 ${item.name=="Chicken Momos (Steam)" ||
 item.name=="Chicken Momos (Fried)" ||
 item.name=="Chicken Egg Roll"
 ? '<div style="color:gold;font-size:13px;">⭐ Best Seller</div>'
+: ""}
+${item.name=="Hyderabadi Dum Biryani"
+? '<div style="display:inline-block;background:#00c853;color:white;padding:2px 8px;border-radius:12px;font-size:11px;margin-top:4px;">🆕 NEW</div>'
 : ""}
 
 <div class="menu-price">₹${item.price}</div>
