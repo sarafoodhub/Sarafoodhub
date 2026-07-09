@@ -108,7 +108,46 @@ padding:8px 18px;
 border-radius:20px;
 font-weight:bold;
 }
+.menu-card{
+background:#2b2b2b;
+border:1px solid #d4af37;
+padding:12px;
+border-radius:12px;
+margin:12px 0;
+}
 
+.menu-name{
+font-size:18px;
+font-weight:bold;
+color:#fff;
+}
+
+.menu-price{
+color:#d4af37;
+margin-top:5px;
+}
+
+.add-btn{
+
+background:#d4af37;
+
+color:#111;
+
+padding:8px 14px;
+
+border:none;
+
+border-radius:8px;
+
+margin-top:10px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+width:100%;
+
+}
 
 </style>
 
@@ -185,7 +224,30 @@ Delicious Rolls, Momos, Rice & More
 </div>
 
 <div class="info-box">
+<div class="info-box">
 
+<div class="box-title">
+🍽️ Order Menu
+</div>
+
+<div id="menuList">
+
+</div>
+
+<div style="margin-top:15px;">
+<h3 style="color:#d4af37;">🛒 Your Cart</h3>
+
+<div id="cartItems" style="margin-top:10px;color:#fff;">
+No items selected
+</div>
+
+<h2 style="margin-top:15px;color:#00ff99;">
+Total ₹ <span id="total">0</span>
+</h2>
+
+</div>
+
+</div>
 <div class="box-title">
 📍 Our Location
 </div>
@@ -273,6 +335,124 @@ window.open("https://wa.me/918669092091?text="+msg,"_blank");
 
 }
 </script>
+  <script>
+
+const menu=[
+
+{name:"Veg Momos (Steam)",price:100},
+
+{name:"Veg Momos (Fried)",price:120},
+
+{name:"Veg Cheese Momos (Steam)",price:120},
+
+{name:"Veg Cheese Momos (Fried)",price:180},
+
+{name:"Paneer Momos (Steam)",price:120},
+
+{name:"Paneer Momos (Fried)",price:180},
+
+{name:"Paneer Cheese Momos (Steam)",price:140},
+
+{name:"Paneer Cheese Momos (Fried)",price:180},
+
+{name:"Chicken Momos (Steam)",price:140},
+
+{name:"Chicken Momos (Fried)",price:180},
+
+{name:"Chicken Cheese Momos (Steam)",price:160},
+
+{name:"Chicken Cheese Momos (Fried)",price:200},
+
+{name:"Egg Roll",price:70},
+
+{name:"Double Egg Roll",price:90},
+
+{name:"Chicken Roll",price:120},
+
+{name:"Chicken Egg Roll",price:140},
+
+{name:"Paneer Roll",price:120},
+
+{name:"Paneer Cheese Roll",price:140},
+
+{name:"Egg Fried Rice",price:90},
+
+{name:"Chicken Fried Rice",price:120},
+
+{name:"Egg Chicken Fried Rice",price:140},
+
+{name:"Biryani",price:180},
+
+{name:"Hyderabadi Dum Biryani",price:200},
+
+{name:"Dal Khichdi",price:120},
+
+{name:"Regular Fries",price:80},
+
+{name:"Peri Peri Fries",price:120},
+
+{name:"Cheese Fries",price:140}
+
+];
+
+let html="";
+
+menu.forEach((item,index)=>{
+
+html+=`
+
+<div class="menu-card">
+
+<div class="menu-name">${item.name}</div>
+
+<div class="menu-price">₹ ${item.price}</div>
+
+<button class="add-btn" onclick="addCart(${index})">
+
+Add To Cart
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("menuList").innerHTML=html;
+let cart=[];
+
+function addCart(index){
+
+cart.push(menu[index]);
+
+let output="";
+
+let total=0;
+
+cart.forEach(function(item,i){
+
+output+=`
+<div style="border-bottom:1px solid #444;padding:8px 0;">
+${i+1}. ${item.name}
+<br>
+<b>₹ ${item.price}</b>
+</div>
+`;
+
+total+=item.price;
+
+});
+
+document.getElementById("cartItems").innerHTML=output;
+
+document.getElementById("total").innerHTML=total;
+
+document.getElementById("order").value=
+cart.map(x=>x.name+" - ₹"+x.price).join(", ");
+
+}
+  </script>
 </body>
 </html>
 </body>
