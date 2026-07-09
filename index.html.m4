@@ -424,32 +424,105 @@ let cart=[];
 
 function addCart(index){
 
-cart.push(menu[index]);
+let item=cart.find(x=>x.name===menu[index].name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:menu[index].name,
+price:menu[index].price,
+qty:1
+});
+
+}
+
+updateCart();
+
+}
+
+function increase(index){
+
+cart[index].qty++;
+
+updateCart();
+
+}
+
+function decrease(index){
+
+cart[index].qty--;
+
+if(cart[index].qty<=0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
+}
+
+function updateCart(){
 
 let output="";
-
 let total=0;
+let orderText="";
 
-cart.forEach(function(item,i){
+cart.forEach((item,index)=>{
+
+let sub=item.price*item.qty;
+
+total+=sub;
+
+orderText+=item.name+" x"+item.qty+", ";
 
 output+=`
-<div style="border-bottom:1px solid #444;padding:8px 0;">
-${i+1}. ${item.name}
-<br>
-<b>₹ ${item.price}</b>
+
+<div class="menu-card">
+
+<div class="menu-name">${item.name}</div>
+
+<div class="menu-price">
+₹${item.price} × ${item.qty} = ₹${sub}
 </div>
+
+<div style="margin-top:10px;display:flex;gap:10px;justify-content:center;">
+
+<button class="add-btn"
+style="width:60px;"
+onclick="decrease(${index})">
+➖
+</button>
+
+<button class="add-btn"
+style="width:60px;"
+onclick="increase(${index})">
+➕
+</button>
+
+</div>
+
+</div>
+
 `;
 
-total+=item.price;
-
 });
+
+if(cart.length==0){
+
+output="No items selected";
+
+}
 
 document.getElementById("cartItems").innerHTML=output;
 
 document.getElementById("total").innerHTML=total;
 
-document.getElementById("order").value=
-cart.map(x=>x.name+" - ₹"+x.price).join(", ");
+document.getElementById("order").value=orderText;
 
 }
   </script>
