@@ -164,7 +164,25 @@ Delicious Rolls, Momos, Rice & More
 <div class="box-text" id="offerText"></div>
 
 </div>
+<div class="info-box">
 
+<div class="box-title">
+🛒 Place Your Order
+</div>
+
+<input type="text" id="name" placeholder="Your Name" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
+
+<input type="text" id="phone" placeholder="Mobile Number" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
+
+<textarea id="order" placeholder="Write Your Order Here..." style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;height:100px;"></textarea>
+
+<input type="text" id="address" placeholder="Delivery Address" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;">
+
+<button class="btn" onclick="sendOrder()">
+🛒 Place Order
+</button>
+
+</div>
 
 <div class="info-box">
 
@@ -236,7 +254,25 @@ document.getElementById("offerBox").style.display="block";
 }
 
 </script>
+<script>
+function sendOrder(){
 
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let order=document.getElementById("order").value;
+let address=document.getElementById("address").value;
+
+let msg =
+"🍽️ *New Order - Sara's Food Hub*%0A%0A"+
+"👤 Name: "+name+"%0A"+
+"📞 Mobile: "+phone+"%0A"+
+"🍔 Order: "+order+"%0A"+
+"📍 Address: "+address;
+
+window.open("https://wa.me/918669092091?text="+msg,"_blank");
+
+}
+</script>
 </body>
 </html>
 </body>
