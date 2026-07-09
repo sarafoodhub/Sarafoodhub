@@ -1,1 +1,323 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara's Food Hub - Menu</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:#fff;
+padding:20px;
+}
+
+.card{
+max-width:430px;
+margin:auto;
+background:#1c1c1c;
+border:2px solid #d4af37;
+border-radius:20px;
+padding:20px;
+box-shadow:0 0 20px rgba(212,175,55,.25);
+}
+
+h1{
+text-align:center;
+color:#d4af37;
+margin-bottom:15px;
+}
+
+.btn{
+display:block;
+width:100%;
+text-align:center;
+text-decoration:none;
+background:#d4af37;
+color:#111;
+padding:14px;
+margin:12px 0;
+border-radius:10px;
+font-weight:bold;
+font-size:17px;
+border:none;
+cursor:pointer;
+}
+
+.food-card{
+background:#2b2b2b;
+border:1px solid #d4af37;
+padding:12px;
+border-radius:12px;
+margin:12px 0;
+}
+
+.menu-name{
+font-size:18px;
+font-weight:bold;
+}
+
+.menu-price{
+color:#d4af37;
+margin-top:5px;
+}
+
+.add-btn{
+background:#d4af37;
+color:#111;
+padding:8px 14px;
+border:none;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+cursor:pointer;
+width:100%;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+#cartItems{
+margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🍽️ Sara's Food Hub</h1>
+
+<a class="btn" href="index.html">⬅ Back to Home</a>
+
+<input
+id="searchMenu"
+type="text"
+placeholder="🔍 Search Food..."
+onkeyup="searchMenu()">
+
+<div id="menuList"></div>
+
+<h2 style="margin-top:20px;color:#d4af37;">🛒 Your Cart</h2>
+
+<div id="cartItems">
+No items selected
+</div>
+
+<h2 style="margin-top:15px;color:#00ff99;">
+Total ₹ <span id="total">0</span>
+</h2>
+  <button class="btn" onclick="sendOrder()">
+📲 Order on WhatsApp
+  </button>
+<script>
+
+const menu=[
+
+{name:"Veg Momos (Steam)",price:100},
+{name:"Veg Momos (Fried)",price:120},
+{name:"Veg Cheese Momos (Steam)",price:120},
+{name:"Veg Cheese Momos (Fried)",price:180},
+{name:"Paneer Momos (Steam)",price:120},
+{name:"Paneer Momos (Fried)",price:180},
+{name:"Paneer Cheese Momos (Steam)",price:140},
+{name:"Paneer Cheese Momos (Fried)",price:180},
+{name:"Chicken Momos (Steam)",price:140},
+{name:"Chicken Momos (Fried)",price:180},
+{name:"Chicken Cheese Momos (Steam)",price:160},
+{name:"Chicken Cheese Momos (Fried)",price:200},
+{name:"Egg Roll",price:70},
+{name:"Double Egg Roll",price:90},
+{name:"Chicken Roll",price:120},
+{name:"Chicken Egg Roll",price:140},
+{name:"Paneer Roll",price:120},
+{name:"Paneer Cheese Roll",price:140},
+{name:"Egg Fried Rice",price:90},
+{name:"Chicken Fried Rice",price:120},
+{name:"Egg Chicken Fried Rice",price:140},
+{name:"Biryani",price:180},
+{name:"Hyderabadi Dum Biryani",price:200},
+{name:"Dal Khichdi",price:120},
+{name:"Regular Fries",price:80},
+{name:"Peri Peri Fries",price:120},
+{name:"Cheese Fries",price:140}
+
+];
+
+let html="";
+let cart=[];
+
+menu.forEach((item,index)=>{
+
+html+=`
+<div class="food-card">
+<div class="menu-name">${item.name}</div>
+<div class="menu-price">₹ ${item.price}</div>
+
+<button class="add-btn" onclick="addCart(${index})">
+Add To Cart
+</button>
+
+</div>
+`;
+
+});
+
+document.getElementById("menuList").innerHTML=html;
+
+function searchMenu(){
+
+let input=document.getElementById("searchMenu").value.toLowerCase();
+
+let cards=document.getElementsByClassName("food-card");
+
+for(let i=0;i<cards.length;i++){
+
+let text=cards[i].innerText.toLowerCase();
+
+cards[i].style.display=text.includes(input)?"block":"none";
+
+}
+
+}
+
+function addCart(index){
+
+let item=cart.find(x=>x.name===menu[index].name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:menu[index].name,
+price:menu[index].price,
+qty:1
+});
+
+}
+
+updateCart();
+
+}
+
+function increase(index){
+
+cart[index].qty++;
+updateCart();
+
+}
+
+function decrease(index){
+
+cart[index].qty--;
+
+if(cart[index].qty<=0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
+}
+
+function updateCart(){
+
+let output="";
+let total=0;
+let orderText="";
+
+cart.forEach((item,index)=>{
+
+let sub=item.price*item.qty;
+total+=sub;
+
+orderText+=item.name+" x"+item.qty+", ";
+
+output+=`
+
+<div class="food-card">
+
+<div class="menu-name">${item.name}</div>
+
+<div class="menu-price">
+₹${item.price} × ${item.qty} = ₹${sub}
+</div>
+
+<div style="display:flex;gap:10px;margin-top:10px;">
+
+<button class="add-btn" style="width:60px;" onclick="decrease(${index})">➖</button>
+
+<button class="add-btn" style="width:60px;" onclick="increase(${index})">➕</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+if(cart.length==0){
+
+output="No items selected";
+
+}
+
+document.getElementById("cartItems").innerHTML=output;
+
+document.getElementById("total").innerHTML=total;
+
+}
+function sendOrder(){
+
+if(cart.length==0){
+alert("Please add at least one item.");
+return;
+}
+
+let total=0;
+let message="🍽️ *Sara's Food Hub Order*%0A%0A";
+
+cart.forEach(item=>{
+total+=item.price*item.qty;
+
+message+="✅ "+item.name+
+" x"+item.qty+
+" = ₹"+(item.price*item.qty)+"%0A";
+});
+
+message+="%0A💰 *Total: ₹"+total+"*";
+
+window.open(
+"https://wa.me/918669092091?text="+message,
+"_blank"
+);
+
+}
+</script>
+
+</div>
+
+</body>
+
+</html>
