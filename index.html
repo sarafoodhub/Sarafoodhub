@@ -228,6 +228,19 @@ Delicious Rolls, Momos, Rice & More
 
 <div class="box-title">
 🍽️ Order Menu
+  <input
+id="searchMenu"
+type="text"
+placeholder="🔍 Search Food..."
+onkeyup="searchMenu()"
+style="
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+margin:10px 0;
+font-size:16px;
+">
 </div>
 
 <div id="menuList">
@@ -522,7 +535,29 @@ document.getElementById("cartItems").innerHTML=output;
 document.getElementById("total").innerHTML=total;
 
 document.getElementById("order").value=orderText;
+function searchMenu(){
 
+let input=document.getElementById("searchMenu").value.toLowerCase();
+
+let cards=document.getElementsByClassName("menu-card");
+
+for(let i=0;i<cards.length;i++){
+
+let text=cards[i].innerText.toLowerCase();
+
+if(text.indexOf(input)>-1){
+
+cards[i].style.display="block";
+
+}else{
+
+cards[i].style.display="none";
+
+}
+
+}
+
+}
 }
 </script>
 </body>
