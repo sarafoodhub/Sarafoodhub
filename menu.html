@@ -127,6 +127,60 @@ border-radius:8px;
 margin-bottom:8px;
 cursor:pointer;
   }
+  #foodPopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup-box{
+background:#1c1c1c;
+border:2px solid #d4af37;
+border-radius:20px;
+padding:20px;
+width:90%;
+max-width:350px;
+text-align:center;
+position:relative;
+}
+
+#popupImg{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.popup-name{
+font-size:22px;
+font-weight:bold;
+margin-bottom:8px;
+color:#fff;
+}
+
+.popup-price{
+font-size:24px;
+font-weight:bold;
+color:#d4af37;
+margin-bottom:15px;
+}
+
+.close-btn{
+position:absolute;
+top:10px;
+right:15px;
+font-size:28px;
+cursor:pointer;
+color:#fff;
+}
 </style>
 </head>
 
@@ -396,6 +450,15 @@ document.getElementById("popupImg").src=menu[index].image;
 document.getElementById("popupName").innerHTML=menu[index].name;
 
 document.getElementById("popupPrice").innerHTML="₹"+menu[index].price;
+    document.getElementById("popupBadge").innerHTML =
+(menu[index].name.includes("Chicken Momos") ||
+menu[index].name=="Chicken Egg Roll")
+? "⭐ Best Seller"
+: "";
+    document.getElementById("popupBadge").innerHTML =
+(menu[index].name.includes("Chicken Momos") || menu[index].name=="Chicken Egg Roll")
+? "⭐ Best Seller"
+: "";
 
 document.getElementById("popupCartBtn").onclick=function(){
 
@@ -424,7 +487,8 @@ document.getElementById("foodPopup").style.display="none";
 <img id="popupImg" src="">
 
 <div class="popup-name" id="popupName"></div>
-
+  
+<div id="popupBadge" style="color:gold;font-weight:bold;margin:8px 0;"></div>
 <div class="popup-price" id="popupPrice"></div>
 
 <button class="btn" id="popupCartBtn">
