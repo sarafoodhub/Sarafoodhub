@@ -278,7 +278,9 @@ item.image="image/fries.jpg";
 else if(item.name.includes("Biryani")){
 item.image="image/biryani.jpg";
 }
-
+else if(item.name.includes("Dal Khichdi")){
+item.image="image/fried-rice.jpg";
+}
 });
 let html="";
 let cart=[];
@@ -305,9 +307,16 @@ ${item.name=="Hyderabadi Dum Biryani"
 : ""}
 
 <div class="menu-price">₹${item.price}</div>
-<button class="add-btn" onclick="addCart(${index})">
-Add To Cart
-</button>
+
+<div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;">
+
+<button class="add-btn" style="width:45px;" onclick="decrease(${index})">➖</button>
+
+<span id="qty${index}" style="font-size:18px;font-weight:bold;">0</span>
+
+<button class="add-btn" style="width:45px;" onclick="increase(${index})">➕</button>
+
+</div>
 
 </div>
 `;
@@ -315,6 +324,27 @@ Add To Cart
 });
 
 document.getElementById("menuList").innerHTML=html;
+  function refreshQty(){
+
+menu.forEach((item,index)=>{
+
+let q = 0;
+
+let cartItem = cart.find(x => x.name === item.name);
+
+if(cartItem){
+q = cartItem.qty;
+}
+
+let qty = document.getElementById("qty"+index);
+
+if(qty){
+qty.innerHTML = q;
+}
+
+});
+
+  }
 
 function searchMenu(){
 
@@ -332,9 +362,11 @@ cards[i].style.display=text.includes(input)?"block":"none";
 
 }
 
-function addCart(index){
 
-let item=cart.find(x=>x.name===menu[index].name);
+
+function increase(index){
+
+let item = cart.find(x => x.name === menu[index].name);
 
 if(item){
 
@@ -352,26 +384,27 @@ qty:1
 
 updateCart();
 
-}
-
-function increase(index){
-
-cart[index].qty++;
-updateCart();
+refreshQty();
 
 }
 
 function decrease(index){
 
-cart[index].qty--;
+let item = cart.find(x => x.name === menu[index].name);
 
-if(cart[index].qty<=0){
+if(!item) return;
 
-cart.splice(index,1);
+item.qty--;
+
+if(item.qty<=0){
+
+cart = cart.filter(x => x.name !== menu[index].name);
 
 }
 
 updateCart();
+
+refreshQty();
 
 }
 
@@ -398,12 +431,8 @@ output+=`
 ₹${item.price} × ${item.qty} = ₹${sub}
 </div>
 
-<div style="display:flex;gap:10px;margin-top:10px;">
-
-<button class="add-btn" style="width:60px;" onclick="decrease(${index})">➖</button>
-
-<button class="add-btn" style="width:60px;" onclick="increase(${index})">➕</button>
-
+<div style="margin-top:8px;color:#aaa;font-size:14px;">
+Qty : ${item.qty}
 </div>
 
 </div>
@@ -421,6 +450,7 @@ output="No items selected";
 document.getElementById("cartItems").innerHTML=output;
 
 document.getElementById("total").innerHTML=total;
+  refreshQty();
 
 }
 function sendOrder(){
@@ -463,10 +493,7 @@ document.getElementById("popupPrice").innerHTML="₹"+menu[index].price;
 menu[index].name=="Chicken Egg Roll")
 ? "⭐ Best Seller"
 : "";
-    document.getElementById("popupBadge").innerHTML =
-(menu[index].name.includes("Chicken Momos") || menu[index].name=="Chicken Egg Roll")
-? "⭐ Best Seller"
-: "";
+    
 
 document.getElementById("popupCartBtn").onclick=function(){
 
