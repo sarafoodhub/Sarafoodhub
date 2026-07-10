@@ -331,7 +331,12 @@ ${item.name=="Hyderabadi Dum Biryani"
 });
 
 document.getElementById("menuList").innerHTML=html;
-  showCategory("Momos");
+menu.forEach((item,index)=>{
+let card=document.getElementsByClassName("food-card")[index];
+if(card){
+card.style.display="none";
+}
+});
   function refreshQty(){
 
 menu.forEach((item,index)=>{
