@@ -223,7 +223,7 @@ Monday - Sunday<br>
 <span id="timing"> 4:00 PM - 2:00 AM(OPEN)</span>
 </div>
 
-<div id="opentag" Class="open-tag">
+<div id="openTag" Class="open-tag">
 🟢 Open Now
 </div>
 
@@ -267,38 +267,39 @@ document.getElementById("offerBox").style.display="block";
   function checkStatus(){
 
 let now = new Date();
-let hour = now.getHours();
-let minute = now.getMinutes();
+let current = now.getHours()*60 + now.getMinutes();
 
-let current = hour * 60 + minute;
+let openTime = 16*60; // 4:00 PM
+let closeTime = 2*60; // 2:00 AM
 
-let openTime = 16 * 60; // 4:00 PM
-let closeTime = 2 * 60; // 2:00 AM
-
-let status = document.getElementById("openTag");
+let status = document.getElementById("status");
+let openTag = document.getElementById("openTag");
 
 if(current >= openTime || current < closeTime){
 
-    status.innerHTML = "🟢 OPEN NOW";
+status.innerHTML = "🟢 OPEN NOW";
+status.classList.remove("closed");
+
 openTag.innerHTML = "🟢 OPEN NOW";
 openTag.style.background = "#0f7b2d";
+
 document.getElementById("timing").innerHTML = "4:00 PM - 2:00 AM (OPEN)";
-status.classList.remove("closed");
 
 }else{
 
 status.innerHTML = "🔴 CLOSED";
+status.classList.add("closed");
+
 openTag.innerHTML = "🔴 CLOSED";
 openTag.style.background = "#b30000";
+
 document.getElementById("timing").innerHTML = "4:00 PM - 2:00 AM (CLOSED)";
-status.classList.add("closed");
 
 }
 
 }
 
 checkStatus();
-
 setInterval(checkStatus,60000);
 
 </script>
