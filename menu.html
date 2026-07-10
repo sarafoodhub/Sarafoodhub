@@ -52,24 +52,39 @@ border:none;
 cursor:pointer;
 }
 
+#menuList{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
 .food-card{
 background:#2b2b2b;
 border:1px solid #d4af37;
 padding:12px;
 border-radius:12px;
-margin:12px 0;
+text-align:center;
 }
 
+@media(min-width:768px){
+
+#menuList{
+grid-template-columns:repeat(4,1fr);
+}
+
+}
 .menu-name{
-font-size:18px;
+font-size:15px;
 font-weight:bold;
+min-hight:42px;
 }
 
 .menu-price{
 color:#d4af37;
 margin-top:5px;
+font-size:18px;
+font-weight:bold;
 }
-
 .add-btn{
 background:#d4af37;
 color:#111;
