@@ -205,6 +205,18 @@ onkeyup="searchMenu()">
 <button class="btn" onclick="showCategory('Rice')">🍚 Rice</button>
 
 </div>
+  <button class="btn" onclick="toggleMenu()">
+🍽️ Menu
+</button>
+
+<div id="categoryButtons" style="display:none;">
+
+<button class="btn" onclick="showCategory('Momos')">🥟 Momos</button>
+<button class="btn" onclick="showCategory('Roll')">🌯 Rolls</button>
+<button class="btn" onclick="showCategory('Fries')">🍟 Fries</button>
+<button class="btn" onclick="showCategory('Rice')">🍚 Rice</button>
+
+</div>
 <div id="menuList"></div>
 
 <h2 style="margin-top:20px;color:#d4af37;">🛒 Your Order</h2>
@@ -374,7 +386,18 @@ cards[i].style.display=text.includes(input)?"block":"none";
 }
 
 }
+function toggleMenu(){
 
+let menu=document.getElementById("categoryButtons");
+
+if(menu.style.display=="none"){
+menu.style.display="block";
+}
+else{
+menu.style.display="none";
+}
+
+}
 function showCategory(category){
 
 let cards=document.getElementsByClassName("food-card");
