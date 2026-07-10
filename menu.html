@@ -197,7 +197,14 @@ id="searchMenu"
 type="text"
 placeholder="🔍 Search Food..."
 onkeyup="searchMenu()">
+<div id="categoryButtons">
 
+<button class="btn" onclick="showCategory('Momos')">🥟 Momos</button>
+<button class="btn" onclick="showCategory('Roll')">🌯 Rolls</button>
+<button class="btn" onclick="showCategory('Fries')">🍟 Fries</button>
+<button class="btn" onclick="showCategory('Rice')">🍚 Rice</button>
+
+</div>
 <div id="menuList"></div>
 
 <h2 style="margin-top:20px;color:#d4af37;">🛒 Your Order</h2>
@@ -324,6 +331,7 @@ ${item.name=="Hyderabadi Dum Biryani"
 });
 
 document.getElementById("menuList").innerHTML=html;
+  showCategory("Momos");
   function refreshQty(){
 
 menu.forEach((item,index)=>{
@@ -362,7 +370,38 @@ cards[i].style.display=text.includes(input)?"block":"none";
 
 }
 
+function showCategory(category){
 
+let cards=document.getElementsByClassName("food-card");
+
+for(let i=0;i<cards.length;i++){
+
+let name=menu[i].name;
+
+if(category=="Momos" && name.includes("Momos")){
+cards[i].style.display="block";
+}
+
+else if(category=="Roll" && name.includes("Roll")){
+cards[i].style.display="block";
+}
+
+else if(category=="Fries" && name.includes("Fries")){
+cards[i].style.display="block";
+}
+
+else if(category=="Rice" && 
+(name.includes("Rice") || name.includes("Biryani") || name.includes("Khichdi"))){
+cards[i].style.display="block";
+}
+
+else{
+cards[i].style.display="none";
+}
+
+}
+
+}
 
 function increase(index){
 
