@@ -183,7 +183,33 @@ const menu=[
 {name:"Cheese Fries",price:140}
 
 ];
+menu.forEach(item=>{
 
+if(item.name.includes("Steam")){
+item.image="image/steam-momos.jpg";
+}
+
+else if(item.name.includes("Fried") && item.name.includes("Momos")){
+item.image="image/fried-momos.jpg";
+}
+
+else if(item.name.includes("Roll")){
+item.image="image/roll.jpg";
+}
+
+else if(item.name.includes("Rice")){
+item.image="image/fried-rice.jpg";
+}
+
+else if(item.name.includes("Fries")){
+item.image="image/fries.jpg";
+}
+
+else if(item.name.includes("Biryani")){
+item.image="image/biryani.jpg";
+}
+
+});
 let html="";
 let cart=[];
 
@@ -191,7 +217,7 @@ menu.forEach((item,index)=>{
 
 html+=`
 <div class="food-card">
-
+<img src="${item.image}" class="food-image" onclick="openPopup(${index})">
 <div class="menu-name">${item.name}</div>
 ${item.name=="Chicken Momos (Steam)" ||
 item.name=="Chicken Momos (Fried)" ||
@@ -353,10 +379,53 @@ window.open(
 );
 
 }
+  function openPopup(index){
+
+document.getElementById("foodPopup").style.display="flex";
+
+document.getElementById("popupImg").src=menu[index].image;
+
+document.getElementById("popupName").innerHTML=menu[index].name;
+
+document.getElementById("popupPrice").innerHTML="₹"+menu[index].price;
+
+document.getElementById("popupCartBtn").onclick=function(){
+
+addCart(index);
+
+closePopup();
+
+};
+
+}
+
+function closePopup(){
+
+document.getElementById("foodPopup").style.display="none";
+
+}
 </script>
 
 </div>
+<div id="foodPopup">
 
+<div class="popup-box">
+
+<span class="close-btn" onclick="closePopup()">✖</span>
+
+<img id="popupImg" src="">
+
+<div class="popup-name" id="popupName"></div>
+
+<div class="popup-price" id="popupPrice"></div>
+
+<button class="btn" id="popupCartBtn">
+🛒 Add To Cart
+</button>
+
+</div>
+
+</div>
 </body>
 
 </html>
