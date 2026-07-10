@@ -223,7 +223,7 @@ Monday - Sunday<br>
 <span id="timing"> 4:00 PM - 2:00 AM(OPEN)</span>
 </div>
 
-<div class="open-tag">
+<div id="opentag" Class="open-tag">
 🟢 Open Now
 </div>
 
@@ -275,19 +275,23 @@ let current = hour * 60 + minute;
 let openTime = 16 * 60; // 4:00 PM
 let closeTime = 2 * 60; // 2:00 AM
 
-let status = document.getElementById("status");
+let status = document.getElementById("openTag");
 
 if(current >= openTime || current < closeTime){
 
     status.innerHTML = "🟢 OPEN NOW";
-    document.getElementById("timing").innerHTML = "4:00 PM – 2:00 AM (OPEN)";
-    status.classList.remove("closed");
+openTag.innerHTML = "🟢 OPEN NOW";
+openTag.style.background = "#0f7b2d";
+document.getElementById("timing").innerHTML = "4:00 PM - 2:00 AM (OPEN)";
+status.classList.remove("closed");
 
 }else{
 
-    status.innerHTML = "🔴 CLOSED";
-    document.getElementById("timing").innerHTML = "4:00 PM – 2:00 AM (CLOSED)";
-    status.classList.add("closed");
+status.innerHTML = "🔴 CLOSED";
+openTag.innerHTML = "🔴 CLOSED";
+openTag.style.background = "#b30000";
+document.getElementById("timing").innerHTML = "4:00 PM - 2:00 AM (CLOSED)";
+status.classList.add("closed");
 
 }
 
