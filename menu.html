@@ -197,14 +197,7 @@ id="searchMenu"
 type="text"
 placeholder="🔍 Search Food..."
 onkeyup="searchMenu()">
-<div id="categoryButtons">
 
-<button class="btn" onclick="showCategory('Momos')">🥟 Momos</button>
-<button class="btn" onclick="showCategory('Roll')">🌯 Rolls</button>
-<button class="btn" onclick="showCategory('Fries')">🍟 Fries</button>
-<button class="btn" onclick="showCategory('Rice')">🍚 Rice</button>
-
-</div>
   <button class="btn" onclick="toggleMenu()">
 🍽️ Menu
 </button>
@@ -428,7 +421,7 @@ cards[i].style.display="none";
 }
 
 }
-
+document.getElementById("categoryButtons").style.display = "none";
 }
 
 function increase(index){
