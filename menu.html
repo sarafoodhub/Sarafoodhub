@@ -202,7 +202,7 @@ onkeyup="searchMenu()">
 🍽️ Menu
 </button>
 
-<div id="categoryButtons" style="display:none;">
+<div id="categoryButtons">
 
 <button class="btn" onclick="showCategory('Momos')">🥟 Momos</button>
 <button class="btn" onclick="showCategory('Roll')">🌯 Rolls</button>
@@ -379,18 +379,7 @@ cards[i].style.display=text.includes(input)?"block":"none";
 }
 
 }
-function toggleMenu(){
 
-let menu=document.getElementById("categoryButtons");
-
-if(menu.style.display=="none"){
-menu.style.display="block";
-}
-else{
-menu.style.display="none";
-}
-
-}
 function showCategory(category){
 
 let cards=document.getElementsByClassName("food-card");
