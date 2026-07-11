@@ -198,9 +198,7 @@ type="text"
 placeholder="🔍 Search Food..."
 onkeyup="searchMenu()">
 
-  <button class="btn" onclick="toggleMenu()">
-🍽️ Menu
-</button>
+
 
 <div id="categoryButtons">
 
@@ -380,37 +378,53 @@ cards[i].style.display=text.includes(input)?"block":"none";
 
 }
 
+let currentCategory = "";
+
 function showCategory(category){
 
-let cards=document.getElementsByClassName("food-card");
+let cards = document.getElementsByClassName("food-card");
+
+// Agar same button dobara click hua to band kar do
+if(currentCategory === category){
+
+    for(let i=0;i<cards.length;i++){
+        cards[i].style.display = "none";
+    }
+
+    currentCategory = "";
+    return;
+}
+
+// Nayi category open karo
+currentCategory = category;
 
 for(let i=0;i<cards.length;i++){
 
-let name=menu[i].name;
+    let name = menu[i].name;
 
-if(category=="Momos" && name.includes("Momos")){
-cards[i].style.display="block";
+    if(category=="Momos" && name.includes("Momos")){
+        cards[i].style.display="block";
+    }
+
+    else if(category=="Roll" && name.includes("Roll")){
+        cards[i].style.display="block";
+    }
+
+    else if(category=="Fries" && name.includes("Fries")){
+        cards[i].style.display="block";
+    }
+
+    else if(category=="Rice" &&
+    (name.includes("Rice") || name.includes("Biryani") || name.includes("Khichdi"))){
+        cards[i].style.display="block";
+    }
+
+    else{
+        cards[i].style.display="none";
+    }
+
 }
 
-else if(category=="Roll" && name.includes("Roll")){
-cards[i].style.display="block";
-}
-
-else if(category=="Fries" && name.includes("Fries")){
-cards[i].style.display="block";
-}
-
-else if(category=="Rice" && 
-(name.includes("Rice") || name.includes("Biryani") || name.includes("Khichdi"))){
-cards[i].style.display="block";
-}
-
-else{
-cards[i].style.display="none";
-}
-
-}
-document.getElementById("categoryButtons").style.display = "none";
 }
 
 function increase(index){
