@@ -65,7 +65,14 @@ padding:12px;
 border-radius:12px;
 text-align:center;
 }
-
+.cart-card{
+background:#2b2b2b;
+border:1px solid #d4af37;
+padding:12px;
+border-radius:12px;
+margin-bottom:10px;
+text-align:center;
+}
 @media(min-width:768px){
 
 #menuList{
@@ -477,7 +484,7 @@ increase(index);
   }
 
 function updateCart(){
-
+console.log(cart);
 let output="";
 let total=0;
 let orderText="";
@@ -491,7 +498,7 @@ orderText+=item.name+" x"+item.qty+", ";
 
 output+=`
 
-<div class="food-card">
+<div class="cart-card">
 
 <div class="menu-name">${item.name}</div>
 
