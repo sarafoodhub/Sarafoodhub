@@ -51,7 +51,15 @@ font-size:17px;
 border:none;
 cursor:pointer;
 }
+#categoryButtons{
+max-height:0;
+overflow:hidden;
+transition:max-height .35s ease;
+}
 
+#categoryButtons.open{
+max-height:300px;
+}
 #menuList{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -205,7 +213,9 @@ type="text"
 placeholder="🔍 Search Food..."
 onkeyup="searchMenu()">
 
-
+<button class="btn" onclick="toggleMenu()">
+🍽️ Menu
+</button>
 
 <div id="categoryButtons">
 
@@ -386,6 +396,13 @@ cards[i].style.display=text.includes(input)?"block":"none";
 }
 
 let currentCategory = "";
+  function toggleMenu(){
+
+let box = document.getElementById("categoryButtons");
+
+box.classList.toggle("open");
+
+  }
 
 function showCategory(category){
 
